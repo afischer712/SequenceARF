@@ -70,7 +70,7 @@ public class Application  {
 			
 			
 		}// end if for manual sequences
-		else if (input.next().toLowerCase().charAt(0)== 'f') {
+		else{
 			
 			System.out.print("Enter the name of the file to process: ");
 			fileName = input.next();
@@ -85,10 +85,15 @@ public class Application  {
 				sequence = file.next();
 				
 				ArrayStack seq = new ArrayStack(subsequence.length());
+				char[] sub = new char[subsequence.length()-1];
+				
+				for(int i=0; i<subsequence.length()-1; i++){
+					sub[i] = subsequence.charAt(i);
+				}
 				
 				
-				for(int i = 0; i<subsequence.length(); i++) {
-					seq.push(subsequence.charAt(i));
+				for(int i = 0; i<sub.length; i++) {
+					seq.push(sub[i]);
 				}// end for loop to fill smallSeq
 				
 			
@@ -106,6 +111,10 @@ public class Application  {
 					
 				}// end for to iterate through the sequence
 				
+				subsequence = "";
+				for(int i=0; i<sub.length; i++) {
+					subsequence += sub[i];
+				}
 				
 				if(seq.isEmpty()) {
 					System.out.println( subsequence + " IS A SUBSEQUENCE OF " + sequence);
